@@ -1,11 +1,25 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>zerotier-fe</title>
   </head>
   <body>
-    <app></app>
+	<div id="app"><router-view></router-view></div>
     <script src="dist/build.js"></script>
+    <script type="text/javascript">
+    WebFontConfig = {
+      google: { families: [ 'Montserrat:400,700:latin' ] }
+    };
+    (function() {
+      var wf = document.createElement('script');
+      wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+      wf.type = 'text/javascript';
+      wf.async = 'true';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(wf, s);
+    })(); </script>
   </body>
 </html>

@@ -37,6 +37,14 @@ module.exports = {
           limit: 10000,
           name: '[name].[ext]?[hash]'
         }
+      },
+      {
+        test: /\.less$/,
+        loader: "style!css!less"
+      },
+      {
+        test: /\.css$/,
+        loader: "style!css"
       }
     ]
   },
@@ -44,7 +52,7 @@ module.exports = {
     historyApiFallback: true,
     noInfo: true
   },
-  devtool: 'eval-source-map'
+  devtool: 'inline-source-map'
 }
 
 if (process.env.NODE_ENV === 'production') {
