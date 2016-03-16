@@ -1,4 +1,4 @@
-# zerotier-fe
+# zt-panel
 
 > A Vue.js project
 
