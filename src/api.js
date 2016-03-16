@@ -11,19 +11,17 @@ class API {
     this.token = null
     this.host = "http://127.0.0.1:9993"
   }
-  _auth_header(){
-    let header = new Header()
-    if(this.token){
-      header.append("X-ZT1-Auth", this.token)
+  _auth_header(token){
+    let header = new Headers()
+    if(token){
+      header.append("X-ZT1-Auth", token)
     }
     return header
   }
   test_token(token, host){
     return fetch(`${host}/status`, {
-      header: this._auth_header(token)
-    }).then((res)=>{
-      console(res)
-    })
+      headers: this._auth_header(token)
+    }).then(jsonify)
   }
   get_config(token, host){
     return JSON.parse(localStorage.getItem("zerotier") || "{}")
