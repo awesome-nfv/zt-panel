@@ -18,13 +18,18 @@ class API {
     }
     return header
   }
+  _default_headers(){
+    return {
+      headers: this._auth_header(this.token)
+    }
+  }
   test_token(token, host){
     return fetch(`${host}/status`, {
       headers: this._auth_header(token)
     }).then(jsonify)
   }
-  get_config(token, host){
-    return JSON.parse(localStorage.getItem("zerotier") || "{}")
+  get_config(){
+    return JSON.parse(localStorage.getItem("zerotier") || "false")
   }
   set_config(token, host){
     var cfg = {
@@ -35,14 +40,28 @@ class API {
     this.token = token
     this.host = host
   }
+  status(){
+    return fetch(`${this.host}/status`, this._default_headers()).then(jsonify)
+  }
+  controller_status(){
+    return fetch(`${this.host}/controller`, this._default_headers()).then(jsonify)
+  }
+  listNetwork(){
+    return fetch(`${this.host}/network`, this._default_headers()).then(jsonify)
+  }
+  listControllerNetwork(){
+    return fetch(`${this.host}/controller/network`, this._default_headers()).then(jsonify)
+  }
+  listPeers(){
+    return fetch(`${this.host}/peer`, this._default_headers()).then(jsonify)
+  }
+  install(Vue){
+    Vue.prototype.$api = this
+  }
 }
-export default new API();
-// export let set_token = function(new_token){
-//     auth_token = new_token
-// }
-// export let status = function(){
-//     return fetch(`${host}/status`).then(jsonify)
-// }
+
+export default new API()
+
 //
 // export let list_network = function(){
 //     return fetch(`${host}/network`).then(jsonify)

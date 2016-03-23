@@ -1,7 +1,4 @@
 <template>
-  <aside class="sidemenu">
-
-  </aside>
   <div class="main">
     <router-view></router-view>
   </div>

@@ -15,10 +15,9 @@
 </template>
 
 <script>
-import api from "./api.js"
 export default {
     data(){
-      var local_data = api.get_config()
+      var local_data = this.$api.get_config()
       return {
         token: local_data.token,
         host: local_data.host,
@@ -29,13 +28,12 @@ export default {
       testToken(){
         if(this.host){
           this.testing = true
-          api.test_token(this.token, this.host).then((ret)=>{
+          this.$api.test_token(this.token, this.host).then((ret)=>{
             console.log(ret)
             this.$dispatch("msg", "success", "Correct Token, jump to dashboard")
-            api.set_config(this.token, this.host)
+            this.$api.set_config(this.token, this.host)
             this.$router.go("/dashboard")
           },()=>{
-            console.log(arguments)
             this.testing = false
             this.$dispatch("msg", "error", "Cannot connect to the server")
           })
