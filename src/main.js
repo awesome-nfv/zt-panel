@@ -42,6 +42,10 @@ router.map({
 	}
 })
 
+router.alias({
+	"/": "/initialize"
+})
+
 if(process.env.NODE_ENV != "production"){
     window.Router = router
 		window.Api = Api
