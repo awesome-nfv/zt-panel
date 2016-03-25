@@ -4,12 +4,20 @@
   <span v-bind:class="{block: true, online: info.online}">{{info.online?'online':'offline'}}</span>
 </div>
 <p>
-  Remote Host: <span class="block mono">{{host}}</span> Version: <span class="block mono">{{info.version}}</span> Node: <span class="block mono">{{info.address}}</span>
+  Remote Host: <span class="block mono">{{host}}</span>
+  Version: <span class="block mono">{{info.version}}</span>
+  Node: <span class="block mono">{{info.address}}</span>
+  TCP Fallback: <span class="block">{{info.tcpFallbackActive ? "On": "Off"}}</span>
 </p>
+<p>
 
-<div v-bind:class="{status: true, online: info.online}"></div>
-<span class="status">TCP Relay: {{info.tcpFallbackActive ? "On": "Off"}}</span>
-<span v-if="controller">Controller</span>
+</span>
+<div v-if="controller">
+  <h2>Controller Status</h2>
+</div>
+<div class="text-center" v-else>
+  Not A Controller Node
+</div>
 </template>
 
 <script>
