@@ -15,8 +15,8 @@
   </thead>
   <tbody>
     <tr v-for="network in networks">
-      <td>{{network.nwid}}</td>
-      <td>{{network.mac}}</td>
+      <td class="mono">{{network.nwid}}</td>
+      <td class="mono">{{network.mac}}</td>
       <td>{{network.name}}</td>
       <td>{{network.status}}</td>
       <td>{{network.type}}</td>

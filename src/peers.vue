@@ -10,8 +10,8 @@
 </thead>
 <tbody>
   <tr v-for="p in peers">
-    <td>{{p.address}}</td>
-    <td>{{p.latency}}</td>
+    <td class="mono">{{p.address}}</td>
+    <td>{{p.latency | latency}}</td>
     <td>{{p.role}}</td>
     <td>{{p.path}}</td>
     <td>{{Math.min(p.lastUnicastFrame, p.lastMulticastFrame) | timedelta}}</td>
@@ -28,37 +28,73 @@ export default {
     }
   },
   filters: {
+    latency(num){
+      if(num){
+        return `${num} ms`
+      }else{
+        return ""
+      }
+    },
     timedelta(timestamp){
       if(timestamp == 0){
-        return "unreachable"
+        return ""
       }
       let now = Date.now()
       let delta = now - timestamp
       if(delta < 1000){
-        return `${delta} ms`
+        return `${delta.toFixed(2)} ms`
       }else if (delta < 60 * 1000){
         delta = delta / 1000
-        return `${delta} sec`
+        return `${delta.toFixed(2)} sec`
       }else if (delta < 3600 * 1000){
         delta = delta / 60 / 1000
-        return `${delta} min`
+        return `${delta.toFixed(2)} min`
       }else if (delta < 86400 * 1000){
         delta = delta / 3600 / 1000
-        return `${delta} hour`
+        return `${delta.toFixed(2)} hour`
       }else{
         delta = delta / 86400 / 1000
-        return `${delta} day`
+        return `${delta.toFixed(2)} day`
       }
     }
   },
-  route:{
-    data(){
-      return this.$api.listPeers().then((ret)=>{
-        return {
-          peers: ret
-        }
+  methods:{
+    update(){
+      this.$api.listPeers().then((ret)=>{
+        ret.sort((a, b)=>{
+          if(a.role == "ROOT" && b.role == "LEAF"){
+            return -1
+          }
+          if(a.role == "LEAF" && b.role == "ROOT"){
+            return 1
+          }
+          if(a.address > b.address){
+            return 1
+          }
+          if(a.address < b.address){
+            return -1
+          }
+          return 0
+        })
+        this.peers = ret
       })
+    }
+  },
+  route:{
+    activate(transition){
+      transition.next()
+      this.timer = setInterval(this.update.bind(this), 1000)
+    },
+    deactivate(transition){
+      clearInterval(this.timer)
+      transition.next()
     }
   }
 }
 </script>
+
+<style>
+  table{
+    table-layout: fixed;
+  }
+</style>

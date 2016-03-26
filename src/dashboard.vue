@@ -51,7 +51,7 @@ export default  {
     background-color: #d50000;
   }
   .big_picture .block.online{
-    background-color: #00f252;
+    background-color: #16A085;
   }
   .big_picture{
     text-align: center;
