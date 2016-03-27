@@ -30,6 +30,17 @@ router.map({
 				component: require("./network.vue"),
 				name: "network",
 			},
+			"/network/join": {
+				component: require("./network_join.vue"),
+				name: "join_network"
+			},
+			"/network/create": {
+				component: require("./network_create.vue"),
+				name: "create_network"
+			},
+			"/network/:nwid": {
+				component: require("./network_detail.vue"),
+			},
 			"/peers":{
 				component: require("./peers.vue"),
 				name: "peers"
