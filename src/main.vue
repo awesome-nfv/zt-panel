@@ -2,9 +2,7 @@
   <div class="wrapper">
     <menu :menu="menu_map">
     </menu>
-    <div class="content">
-      <router-view></router-view>
-    </div>
+    <router-view transition="fade"></router-view>
   </div>
 </template>
 

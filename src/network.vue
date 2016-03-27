@@ -1,28 +1,27 @@
 <template>
-<h1>Networks</h1>
-<small>This node joined {{networks.length}} network(s).</small>
-<hr>
-<div v-for="network in networks" class="network">
-
+<div>
+  <h1>Networks</h1>
+  <small>This node joined {{networks.length}} network(s).</small>
+  <hr>
+  <table class="table">
+    <thead>
+      <td>Network</td>
+      <td>MAC</td>
+      <td>Name</td>
+      <td>Status</td>
+      <td>Type</td>
+    </thead>
+    <tbody>
+      <tr v-for="network in networks">
+        <td class="mono">{{network.nwid}}</td>
+        <td class="mono">{{network.mac}}</td>
+        <td>{{network.name}}</td>
+        <td>{{network.status}}</td>
+        <td>{{network.type}}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
-<table class="table">
-  <thead>
-    <td>Network</td>
-    <td>MAC</td>
-    <td>Name</td>
-    <td>Status</td>
-    <td>Type</td>
-  </thead>
-  <tbody>
-    <tr v-for="network in networks">
-      <td class="mono">{{network.nwid}}</td>
-      <td class="mono">{{network.mac}}</td>
-      <td>{{network.name}}</td>
-      <td>{{network.status}}</td>
-      <td>{{network.type}}</td>
-    </tr>
-  </tbody>
-</table>
 </template>
 
 <script>

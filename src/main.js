@@ -35,7 +35,7 @@ router.map({
 				name: "peers"
 			},
 			"/about": {
-				component: {template: "Too lazy to write a help file"},
+				component: {template: "<div>Too lazy to write a help file</div>"},
 				name: "about"
 			}
 		}
@@ -43,20 +43,22 @@ router.map({
 })
 
 router.alias({
-	"/": "/initialize"
+	"/": "/dashboard"
 })
 
 if(process.env.NODE_ENV != "production"){
     window.Router = router
 		window.Api = Api
 		Vue.config.debug = true
+		window.Vue = Vue
 }
 
 let config = Api.get_config()
 if(config){
 	Api.set_config(config.token, config.host)
 }
-router.start(App, "#app", function(){
+router.start(App, ".app", function(){
+	console.log(config)
 	if(!config){
 		router.replace("/initialize")
 	}

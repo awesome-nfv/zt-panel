@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <router-view></router-view>
+    <router-view transition="fade"></router-view>
   </div>
   <notification></notification>
 </template>
@@ -12,6 +12,3 @@ export default {
   }
 }
 </script>
-
-<style>
-</style>

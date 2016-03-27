@@ -1,23 +1,22 @@
 <template>
-<h1>Dashboard</h1>
-<div class="big_picture">
-  <span v-bind:class="{block: true, online: info.online}">{{info.online?'online':'offline'}}</span>
-</div>
-<p>
-  Remote Host: <span class="block mono">{{host}}</span>
-  Version: <span class="block mono">{{info.version}}</span>
-  Node: <span class="block mono">{{info.address}}</span>
-  TCP Fallback: <span class="block">{{info.tcpFallbackActive ? "On": "Off"}}</span>
-</p>
-<p>
-
-</span>
-<div v-if="controller">
-  <h2>Controller Status</h2>
-</div>
-<div class="text-center" v-else>
-  Not A Controller Node
-</div>
+  <div>
+    <h1>Dashboard</h1>
+    <div class="big_picture">
+      <span v-bind:class="{block: true, online: info.online}">{{info.online?'online':'offline'}}</span>
+    </div>
+    <p>
+      Remote Host: <span class="block mono">{{host}}</span>
+      Version: <span class="block mono">{{info.version}}</span>
+      Node: <span class="block mono">{{info.address}}</span>
+      TCP Fallback: <span class="block">{{info.tcpFallbackActive ? "On": "Off"}}</span>
+    </p>
+    <div v-if="controller">
+      <h2>Controller Status</h2>
+    </div>
+    <div class="text-center" v-else>
+      Not A Controller Node
+    </div>
+  </div>
 </template>
 
 <script>
@@ -39,6 +38,7 @@ export default  {
       }, ()=>{
         this.controller = false
       })
+      transition.next()
     }
   }
 }

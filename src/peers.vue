@@ -1,23 +1,29 @@
 <template>
-<h1>Peers</h1>
-<table class="table">
-<thead>
-  <td>Address</td>
-  <td>Latency</td>
-  <td>Role</td>
-  <td>Path</td>
-  <td>Last Meet</td>
-</thead>
-<tbody>
-  <tr v-for="p in peers">
-    <td class="mono">{{p.address}}</td>
-    <td>{{p.latency | latency}}</td>
-    <td>{{p.role}}</td>
-    <td>{{p.path}}</td>
-    <td>{{Math.min(p.lastUnicastFrame, p.lastMulticastFrame) | timedelta}}</td>
-  </tr>
-</tbody>
-</table>
+<div>
+  <h1>Peers</h1>
+  <small>
+    We know {{peers.length}} peers, {{root_peers}} root peers.
+  </small>
+  <hr>
+  <table class="table">
+    <thead>
+      <td>Address</td>
+      <td>Latency</td>
+      <td>Role</td>
+      <td>Path</td>
+      <td>Last Meet</td>
+    </thead>
+    <tbody>
+      <tr v-for="p in peers">
+        <td class="mono">{{p.address}}</td>
+        <td>{{p.latency | latency}}</td>
+        <td>{{p.role}}</td>
+        <td>{{p.path}}</td>
+        <td>{{Math.min(p.lastUnicastFrame, p.lastMulticastFrame) | timedelta}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 </template>
 
 <script>
@@ -25,6 +31,13 @@ export default {
   data(){
     return {
       peers: []
+    }
+  },
+  computed:{
+    root_peers(){
+      return this.peers.filter((p)=>{
+        return p.role == "ROOT"
+      }).length
     }
   },
   filters: {
@@ -93,8 +106,11 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
   table{
     table-layout: fixed;
+  }
+  table tr:first-of-type{
+    width: 200px;
   }
 </style>
