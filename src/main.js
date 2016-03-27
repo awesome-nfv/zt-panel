@@ -58,7 +58,6 @@ if(config){
 	Api.set_config(config.token, config.host)
 }
 router.start(App, ".app", function(){
-	console.log(config)
 	if(!config){
 		router.replace("/initialize")
 	}

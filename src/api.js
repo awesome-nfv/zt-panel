@@ -50,7 +50,11 @@ class API {
     return fetch(`${this.host}/network`, this._default_headers()).then(jsonify)
   }
   listControllerNetwork(){
-    return fetch(`${this.host}/controller/network`, this._default_headers()).then(jsonify)
+    // ignore the network error and just return a empty array
+    return fetch(`${this.host}/controller/network`, this._default_headers()).then(jsonify).catch((err)=>{
+      // console.log(err)
+      return Promise.resolve([])
+    })
   }
   listPeers(){
     return fetch(`${this.host}/peer`, this._default_headers()).then(jsonify)

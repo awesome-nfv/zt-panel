@@ -12,7 +12,7 @@
       <td>Type</td>
     </thead>
     <tbody>
-      <tr v-for="network in networks">
+      <tr v-for="network in network_normal">
         <td class="mono">{{network.nwid}}</td>
         <td class="mono">{{network.mac}}</td>
         <td>{{network.name}}</td>
@@ -34,8 +34,18 @@ export default {
   route: {
     data(transition){
       transition.next()
-      this.$api.listNetwork().then((ret)=>{
-        this.networks = ret
+      Promise.all([this.$api.listNetwork(), this.$api.listControllerNetwork()]).then(([networks, controlled])=>{
+        console.log(networks, controlled)
+        let normal = [], controll = []
+        networks.forEach((net)=>{
+          if(controlled.contains(net.nwid)){
+            controll.append(net)
+          }else{
+            normal.append(net)
+          }
+        })
+        this.network_normal = normal
+        this.network_controlled = controll
       })
     }
   }

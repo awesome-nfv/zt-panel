@@ -15,6 +15,7 @@ export default {
                 {name: "Network", goto: {name: "network"}},
                 {name: "Peers", goto: {name: "peers"}},
                 {name: "About & Help", goto: {name: "about"}},
+                {name: "Change Node", goto: "/initialize"}
             ]
         }
     },
