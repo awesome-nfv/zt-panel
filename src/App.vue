@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <router-view transition="fade"></router-view>
+    <router-view transition="fade" transition-mode="out-in"></router-view>
   </div>
   <notification></notification>
 </template>
@@ -11,4 +11,5 @@ export default {
     notification: require("./components/notification.vue")
   }
 }
+// TODO: remove app.Vue
 </script>
