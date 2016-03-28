@@ -18,7 +18,7 @@
         <td class="mono">{{p.address}}</td>
         <td>{{p.latency | latency}}</td>
         <td>{{p.role}}</td>
-        <td>{{p.path}}</td>
+        <td>{{path(p.paths)}}</td>
         <td>{{Math.min(p.lastUnicastFrame, p.lastMulticastFrame) | timedelta}}</td>
       </tr>
     </tbody>
@@ -72,6 +72,10 @@ export default {
     }
   },
   methods:{
+    path(paths){
+      // using a more friend way to show
+      return paths.map((p)=>{return p.address}).join(",")
+    },
     update(){
       this.$api.listPeers().then((ret)=>{
         ret.sort((a, b)=>{

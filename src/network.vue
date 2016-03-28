@@ -1,5 +1,6 @@
 <template>
 <div>
+  <loading v-if="$loadingRouteData" transition="loading"></loading>
   <h1>Networks</h1>
   <small>This node joined {{network_controlled.length + network_normal.length}} network(s). <a v-link="'/network/join'">Join a new network</a> <a href="'/network/create'">Create a network</a></small>
   <hr>
@@ -25,7 +26,7 @@
         </td>
       </tr>
       <tr v-for="network in network_controlled">
-        <td class="mono"><a v-link="{path: network.nwid, relative: true}">{{network.nwid}}</a></td>
+        <td class="mono"><a v-link="{path:'/'+network.nwid, append: true}">{{network.nwid}}</a></td>
         <td class="mono">{{network.mac}}</td>
         <td>{{network.name}}</td>
         <td>{{network.status}}</td>
