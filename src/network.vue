@@ -1,7 +1,7 @@
 <template>
 <div>
   <h1>Networks</h1>
-  <small>This node joined {{network_controlled.length + network_normal.length}} network(s). <a v-link="'/network/join'">Join a new network</a> <a href="'/network/create'">Create a network</a></small>
+  <small>This node joined {{network_controlled.length + network_normal.length}} network(s). <a v-link="'/network/join'">Join a new network</a> <a v-link="'/network/create'">Create a network</a></small>
   <hr>
   <table class="table">
     <thead>
