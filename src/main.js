@@ -3,10 +3,11 @@ import VueRouter from 'vue-router'
 import App from "./App.vue"
 import Api from "./api.js"
 
-
 // load the style
 require("normalize.css/normalize.css")
 require("./main.less")
+
+// Vue.component("loading", Loading)
 
 Vue.use(VueRouter).use(Api)
 

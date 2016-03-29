@@ -1,6 +1,5 @@
 <template>
 <div>
-  <loading v-if="$loadingRouteData" transition="loading"></loading>
   <h1>Networks</h1>
   <small>This node joined {{network_controlled.length + network_normal.length}} network(s). <a v-link="'/network/join'">Join a new network</a> <a href="'/network/create'">Create a network</a></small>
   <hr>
@@ -51,10 +50,10 @@ export default {
         console.log(networks, controlled)
         let normal = [], controll = []
         networks.forEach((net)=>{
-          if(controlled.contains(net.nwid)){
-            controll.append(net)
+          if(controlled.indexOf(net.nwid) > -1){
+            controll.push(net)
           }else{
-            normal.append(net)
+            normal.push(net)
           }
         })
         this.network_normal = normal

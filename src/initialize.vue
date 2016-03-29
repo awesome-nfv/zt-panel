@@ -3,8 +3,8 @@
       <div class="content">
         <h1>Access Token</h1>
         <div class="input-wrapper">
-          <input type="text" v-model="token" placeholder="Access Token">
-          <input type="text" v-model="host" placeholder="Host">
+          <input type="text" class="transparent" v-model="token" placeholder="Access Token">
+          <input type="text" class="transparent" v-model="host" placeholder="Host">
         </div>
         <div class="button" @click="testToken" disabled="{{testing}}">
           Test!

@@ -18,10 +18,12 @@ class API {
     }
     return header
   }
-  _default_headers(){
-    return {
+  _default_headers(cfg=null){
+    let config = {
       headers: this._auth_header(this.token)
     }
+    Object.assign(config, cfg)
+    return config
   }
   test_token(token, host){
     return fetch(`${host}/status`, {
@@ -58,6 +60,9 @@ class API {
   }
   listPeers(){
     return fetch(`${this.host}/peer`, this._default_headers()).then(jsonify)
+  }
+  joinNetwork(nwid){
+    return fetch(`${this.host}/network/${nwid}`, this._default_headers({method: "POST"})).then(jsonify)
   }
   install(Vue){
     Vue.prototype.$api = this
