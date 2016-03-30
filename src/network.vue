@@ -13,7 +13,7 @@
     </thead>
     <tbody>
       <tr v-for="network in network_normal">
-        <td class="mono">{{network.nwid}}</td>
+        <td class="mono"><a v-link="{path: network.nwid, append: true}">{{network.nwid}}</a></td>
         <td class="mono">{{network.mac}}</td>
         <td>{{network.name}}</td>
         <td>{{network.status}}</td>
@@ -25,7 +25,7 @@
         </td>
       </tr>
       <tr v-for="network in network_controlled">
-        <td class="mono"><a v-link="{path:'/'+network.nwid, append: true}">{{network.nwid}}</a></td>
+        <td class="mono"><a v-link="{path: network.nwid, append: true}">{{network.nwid}}</a></td>
         <td class="mono">{{network.mac}}</td>
         <td>{{network.name}}</td>
         <td>{{network.status}}</td>

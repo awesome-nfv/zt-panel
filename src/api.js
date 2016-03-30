@@ -64,6 +64,12 @@ class API {
   joinNetwork(nwid){
     return fetch(`${this.host}/network/${nwid}`, this._default_headers({method: "POST"})).then(jsonify)
   }
+  leaveNetwork(nwid){
+    return fetch(`${this.host}/network/${nwid}`, this._default_headers({method: "DELETE"})).then(jsonify)
+  }
+  getNetwork(nwid){
+    return fetch(`${this.host}/network/${nwid}`, this._default_headers()).then(jsonify)
+  }
   install(Vue){
     Vue.prototype.$api = this
   }

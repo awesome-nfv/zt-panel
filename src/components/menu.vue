@@ -34,6 +34,7 @@ export default {
     text-decoration: none;
     transition: all .5s;
     color: #6b6b6b;
+    font-weight: 200;
   }
   .menu-item a:active, .menu-item a.active, .menu-item a:hover{
     text-decoration: none;

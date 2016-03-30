@@ -27,7 +27,7 @@ to use something like nginx to proxy the requests. A example nginx config file i
     	location / {
     		proxy_pass http://127.0.0.1:9993;
     		add_header 'Access-Control-Allow-Origin' '*';
-    		add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+    		add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS, DELETE';
     		add_header 'Access-Control-Allow-Headers' 'X-ZT1-AUTH,Accept,Authorization,Cache-Control,Content-Type,DNT,If-Modified-Since,Keep-Alive,Origin,User-Agent,X-Mx-ReqToken,X-Requested-With';
     		add_header 'Access-Control-Allow-Credentials' 'true';
     		allow 127.0.0.1;
