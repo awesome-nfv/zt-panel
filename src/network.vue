@@ -13,7 +13,7 @@
     </thead>
     <tbody>
       <tr v-for="network in network_normal">
-        <td class="mono"><a v-link="{path: network.nwid, append: true}">{{network.nwid}}</a></td>
+        <td class="mono"><a v-link="{name: 'network_detail', params: {nwid: network.nwid}}">{{network.nwid}}</a></td>
         <td class="mono">{{network.mac}}</td>
         <td>{{network.name}}</td>
         <td>{{network.status}}</td>
@@ -25,7 +25,7 @@
         </td>
       </tr>
       <tr v-for="network in network_controlled">
-        <td class="mono"><a v-link="{path: network.nwid, append: true}">{{network.nwid}}</a></td>
+        <td class="mono"><a v-link="{name: 'network_detail', params: {nwid: network.nwid}}">{{network.nwid}}</a></td>
         <td class="mono">{{network.mac}}</td>
         <td>{{network.name}}</td>
         <td>{{network.status}}</td>
@@ -44,8 +44,8 @@ export default {
       network_normal: []
     }
   },
-  route: {
-    data(transition){
+  methods:{
+    update(){
       return Promise.all([this.$api.listNetwork(), this.$api.listControllerNetwork()]).then(([networks, controlled])=>{
         console.log(networks, controlled)
         let normal = [], controll = []
@@ -59,6 +59,16 @@ export default {
         this.network_normal = normal
         this.network_controlled = controll
       })
+    }
+  },
+  route: {
+    activate(){
+      this.timer = setInterval(this.update.bind(this), 1000)
+      return Promise.resolve()
+    },
+    deactivate(){
+      clearInterval(this.timer)
+      return Promise.resolve()
     }
   }
 }

@@ -41,6 +41,7 @@ router.map({
 			},
 			"/network/:nwid": {
 				component: require("./network_detail.vue"),
+				name: "network_detail"
 			},
 			"/peers":{
 				component: require("./peers.vue"),

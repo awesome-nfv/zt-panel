@@ -23,15 +23,21 @@ export default {
       }).catch((error)=>{
         this.$dispatch("msg", "error", "Error: " + error)
       })
+    },
+    update(){
+      return this.$api.getNetwork(this.$route.params.nwid).then((network)=>{
+        this.network = network
+      })
     }
   },
   route:{
-    data(){
-      return this.$api.getNetwork(this.$route.params.nwid).then((network)=>{
-        return {
-          network: network
-        }
-      })
+    activate(){
+      this.timer = setInterval(this.update.bind(this), 1000)
+      return Promise.resolve()
+    },
+    deactivate(){
+      clearInterval(this.timer)
+      return Promise.resolve()
     }
   }
 }
