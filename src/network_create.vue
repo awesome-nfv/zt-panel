@@ -2,7 +2,12 @@
   <div>
     <h1>
       Create Network
-      <span>{{address}}</span><input type="text" maxlength="6" class="embed" v-model="nwid" placeholder="New id"></input></h1>
+      <span>{{address}}</span><input type="text" maxlength="6" class="embed" v-model="nwid" placeholder="New id"></input>
+    </h1>
+    <zt-input label="姓名"></zt-input>
+    <div class="action">
+      <button type="button" @click="create">Create the network</button>
+    </div>
   </div>
 </template>
 
@@ -13,6 +18,9 @@ export default {
       address: "",
       nwid: ""
     }
+  },
+  components:{
+    "zt-input": require("./components/zt-input.vue")
   },
   route:{
     data(){
