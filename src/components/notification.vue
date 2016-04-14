@@ -58,25 +58,29 @@ export default {
   position: fixed;
   top: 0;
   right: 0;
-  width: 220px;
+  width: 280px;
 }
 .notification{
-  width: 200px;
+  width: 250px;
+  background-color: rgba(255, 255, 255, 0.5);
   min-height: 40px;
   border-radius: 10px;
   padding: 10px 20px;
   margin: 10px;
+  font-size: .8em;
   border-width: 2px;
   border-style: solid;
   color: #333;
 }
 .success{
   border-color: #45ee7a;
+  color: #43ee7a;
 }
 .info{
   border-color: #0085ff;
 }
 .error{
-  border-color: #ff0a0a;
+  border-color: #ff4d4d;
+  color: #ff4f4f;
 }
 </style>

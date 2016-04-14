@@ -9,7 +9,9 @@
         <div class="button" @click="testToken" disabled="{{testing}}">
           Test!
         </div>
-        <!-- <small>You can get the access_token at the <pre>/var/lib/zerotier-one/authtoken.secret</pre></small> -->
+        <small>
+          Test the connection with <code>curl -H "X-ZT1-Auth: {{token}}" {{host}}/version</code>
+        </small>
       </div>
     </div>
 </template>
@@ -27,15 +29,16 @@ export default {
     methods: {
       testToken(){
         if(this.host){
+          console.log("Start testing")
           this.testing = true
           this.$api.test_token(this.token, this.host).then((ret)=>{
             console.log(ret)
             this.$dispatch("msg", "success", "Correct Token, jump to dashboard")
             this.$api.set_config(this.token, this.host)
             this.$router.go("/dashboard")
-          },()=>{
+          },(err)=>{
             this.testing = false
-            this.$dispatch("msg", "error", "Cannot connect to the server")
+            this.$dispatch("msg", "error", "Cannot connect to the server, " + err)
           })
         }
       }
@@ -52,6 +55,7 @@ h1{
   background-color: #00badb;
   height: 100%;
   width: 100%;
+  display: flex;
 }
 .content{
   width: 300px;
@@ -64,6 +68,10 @@ input[type=text]{
   width: 100%;
   transition: all .4s;
   margin-bottom: 1em;
+}
+input[disabled]{
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 input[type=text]:hover, input[type=text]:focus{
   background-color: white;

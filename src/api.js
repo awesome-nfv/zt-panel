@@ -26,7 +26,7 @@ class API {
     return config
   }
   test_token(token, host){
-    return fetch(`${host}/status`, {
+    return fetch(`${host}/version`, {
       headers: this._auth_header(token)
     }).then(jsonify)
   }
