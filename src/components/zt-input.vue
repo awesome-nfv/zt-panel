@@ -1,24 +1,13 @@
 <template>
-  <div :class="{'input-container': true, focus: focus, label: showlabel}">
+  <div :class="{'input-container': true, label: !!model}">
     <label>{{label}}</label>
-    <input v-ref:input type="text" @focus="focus = true" @blur="focus = false" :placeholder="placeholder" v-model="model">
+    <input type="text" :placeholder="label" v-model="model">
   </div>
 </template>
 
 <script>
 export default {
   props: ["model", "label", "placeholder"],
-  data(){
-    return {
-      focus: false
-    }
-  },
-  computed: {
-    showlabel(){
-      console.log(!this.model)
-      return !this.model
-    }
-  }
 }
 </script>
 
@@ -26,27 +15,33 @@ export default {
 .input-container{
   width: 100%;
   position: relative;
-}
-.input-container.label label{
-  transform: scale(1) translate(0rem, .6rem);
+  border: .1rem solid #ddd;
+  border-radius: .3em;
+  overflow: hidden;
 }
 .input-container label{
   position: absolute;
-  top: .2rem;
-  left: 1rem;
+  z-index: 1;
+  top: .3em;
+  left: 1.666667em;
   transition: all .4s;
-  transform: scale(.6);
-  transform-origin: left top;
+  font-size: .6em;
+  transform: translate(0, -1.2em);
+  opacity: .5;
 }
 
-.input-container input{
-  padding: 1rem 1rem .5rem 1rem;
-  border: none;
-  border: .1rem solid #ddd;
-  border-radius: .3em;
-  top: 0;
+.input-container.label label{
+  transform: translate(0, 0);
+  transform-origin: left top;
 }
-.input-container input:focus{
+.input-container input{
+  border: none;
   outline: none;
+  padding: .75em 1em;
+  transition: all .4s;
+  width: 100%;
+}
+.input-container.label input{
+  transform: translate(0,.3rem);
 }
 </style>
