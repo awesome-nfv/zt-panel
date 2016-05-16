@@ -31,7 +31,7 @@ export default {
 }
 
 .input-container.label label{
-  transform: translate(0, 0);
+  transform: translate(0, .2em);
   transform-origin: left top;
 }
 .input-container input{
@@ -42,6 +42,6 @@ export default {
   width: 100%;
 }
 .input-container.label input{
-  transform: translate(0,.3rem);
+  transform: translate(0,.5em);
 }
 </style>

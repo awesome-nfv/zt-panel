@@ -4,7 +4,10 @@
       Create Network
       <span>{{address}}</span><input type="text" maxlength="6" class="embed" v-model="nwid" placeholder="New id"></input>
     </h1>
-    <zt-input label="Name" :model.sync="name"></zt-input>
+    <form>
+      <zt-input label="Name" :model.sync="config.name"></zt-input>
+      <zt-input label="Name" :model.sync="config.name"></zt-input>
+    </form>
     <div class="action">
       <button type="button" @click="create">Create the network</button>
     </div>
@@ -15,9 +18,34 @@
 export default {
   data(){
     return {
-      address: "",
       nwid: "",
-      name: ""
+      config: {
+        address: "",
+        name: "",
+        private: true,
+        enableBroadcast: true,
+        allowPassiveBridging: true,
+        v4AssignMode: "zt",
+        v6AssignMode: "zt",
+        multicastLimit: 10,
+        relays: [],
+        ipAssignmentPools: [],
+        rules: [{ruleNo: 999, action: "accept"}]
+      }
+    }
+  },
+  methods:{
+    addrelays(address, phyAddress){
+      this.config.relays.push({
+        address: address,
+        phyAddress: phyAddress
+      })
+    },
+    addipAssignmentPools(start, end){
+      this.config.relays.push({
+        ipRangeStart: start,
+        ipRangeEnd: end
+      })
     }
   },
   components:{

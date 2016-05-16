@@ -11,7 +11,9 @@
       TCP Fallback: <span class="block">{{info.tcpFallbackActive ? "On": "Off"}}</span>
     </p>
     <div v-if="controller">
-      <h2>Controller Status</h2>
+      <p>
+        Controller InstanceID <span class="block mono">{{instanceid}}</span>
+      </p>
     </div>
     <div class="text-center" v-else>
       Not A Controller Node
@@ -25,7 +27,8 @@ export default  {
     return {
       info: {},
       host: this.$api.get_config().host,
-      controller: undefined
+      controller: undefined,
+      instanceid: ''
     }
   },
   route:{
@@ -35,6 +38,7 @@ export default  {
       })
       this.$api.controller_status().then((ret)=>{
         this.controller = true
+        this.instanceid = ret.instanceId
       }, ()=>{
         this.controller = false
       })
