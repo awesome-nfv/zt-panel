@@ -4,7 +4,7 @@
   <pre>{{network | json}}</pre>
 </div>
 <div class="operation">
-  <button type="button" v-on:click="leave">Leave Network</button>
+  <button class="ui red button" type="button" v-on:click="leave">Leave Network</button>
 </div>
 </template>
 

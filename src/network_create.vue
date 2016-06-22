@@ -4,12 +4,15 @@
       Create Network
       <span>{{address}}</span><input type="text" maxlength="6" class="embed" v-model="nwid" placeholder="New id"></input>
     </h1>
-    <form>
-      <zt-input label="Name" :model.sync="config.name"></zt-input>
-      <zt-input label="Name" :model.sync="config.name"></zt-input>
+    <form class="ui form">
+      <div class="field">
+
+      </div>
+      <zt-input class="input" label="Name" :model.sync="config.name"></zt-input>
+      <zt-input class="input" label="Name" :model.sync="config.name"></zt-input>
     </form>
     <div class="action">
-      <button type="button" @click="create">Create the network</button>
+      <button class="ui button" type="button" @click="create">Create the network</button>
     </div>
   </div>
 </template>
@@ -18,7 +21,7 @@
 export default {
   data(){
     return {
-      nwid: "",
+      nwid: "######",
       config: {
         address: "",
         name: "",
@@ -71,5 +74,8 @@ export default {
     border-bottom: 2px solid #ddd;
     box-sizing: border-box;
     width:4em;
+  }
+  form .input{
+    margin: 1em 0;
   }
 </style>

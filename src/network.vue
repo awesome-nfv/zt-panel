@@ -1,21 +1,20 @@
 <template>
 <div>
   <h1>Networks</h1>
-  <small>This node joined {{network_controlled.length + network_normal.length}} network(s). <a v-link="'/network/join'">Join a new network</a> <a v-link="'/network/create'">Create a network</a></small>
-  <hr>
-  <table class="table">
+  <p>This node joined {{network_controlled.length + network_normal.length}} network(s). <button class="ui button" v-link="'/network/join'">Join a new network</button> <button class="ui button" v-link="'/network/create'">Create a network</button  ></p>
+  <table class="ui celled table">
     <thead>
+      <td>Name</td>
       <td>Network</td>
       <td>MAC</td>
-      <td>Name</td>
       <td>Status</td>
       <td>Type</td>
     </thead>
     <tbody>
       <tr v-for="network in network_normal">
+        <td>{{network.name}}</td>
         <td class="mono"><a v-link="{name: 'network_detail', params: {nwid: network.nwid}}">{{network.nwid}}</a></td>
         <td class="mono">{{network.mac}}</td>
-        <td>{{network.name}}</td>
         <td>{{network.status}}</td>
         <td>{{network.type}}</td>
       </tr>
@@ -25,9 +24,9 @@
         </td>
       </tr>
       <tr v-for="network in network_controlled">
+        <td>{{network.name}}</td>
         <td class="mono"><a v-link="{name: 'network_detail', params: {nwid: network.nwid}}">{{network.nwid}}</a></td>
         <td class="mono">{{network.mac}}</td>
-        <td>{{network.name}}</td>
         <td>{{network.status}}</td>
         <td>{{network.type}}</td>
       </tr>

@@ -1,12 +1,16 @@
 <template>
-  <h1>Join {{nwid}}</h1>
+  <h1>Join Network {{nwid}}</h1>
   <div class="text-center">
-    <input @keydown.prevent.enter="submit" type="text" placeholder="Network ID" v-model="nwid">
+    <zt-input @keydown.prevent.enter="submit"  type="text" placeholder="Network ID" :model.sync="nwid">
   </div>
 </template>
 
 <script>
+import Input from './components/zt-input.vue'
 export default {
+  components: {
+    "zt-input": Input
+  },
   data(){
     return {
       nwid: ""

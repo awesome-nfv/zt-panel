@@ -11,6 +11,7 @@
     "less": "^2.6.1",
     "less-loader": "^2.2.2",
     "normalize.css": "^3.0.3",
+    "pure-semantic-ui-css": "^2.1.8",
     "style-loader": "^0.13.0",
     "vue": "^1.0.0",
     "vue-router": "^0.7.11"

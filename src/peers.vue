@@ -1,11 +1,10 @@
 <template>
 <div>
   <h1>Peers</h1>
-  <small>
+  <p>
     We know {{peers.length}} peers, {{root_peers}} root peers.
-  </small>
-  <hr>
-  <table class="table">
+  </p>
+  <table class="ui table">
     <thead>
       <td>Address</td>
       <td>Latency</td>

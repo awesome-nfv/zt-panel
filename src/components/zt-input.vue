@@ -1,7 +1,9 @@
 <template>
-  <div :class="{'input-container': true, label: !!model}">
-    <label>{{label}}</label>
-    <input type="text" :placeholder="label" v-model="model">
+  <div :class="{'input-container': true, label: !!model && label}">
+    <div>
+      <label>{{label}}</label>
+      <input type="text" :placeholder="label" v-model="model">
+    </div>
   </div>
 </template>
 

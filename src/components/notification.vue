@@ -56,18 +56,18 @@ export default {
 }
 .notification-wrapper{
   position: fixed;
+  z-index: 99999999;
   top: 0;
   right: 0;
   width: 280px;
 }
 .notification{
   width: 250px;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255);
   min-height: 40px;
   border-radius: 10px;
   padding: 10px 20px;
   margin: 10px;
-  font-size: .8em;
   border-width: 2px;
   border-style: solid;
   color: #333;

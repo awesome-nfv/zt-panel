@@ -6,6 +6,7 @@ import Api from "./api.js"
 // load the style
 require("normalize.css/normalize.css")
 require("./main.less")
+require("pure-semantic-ui-css/semantic.css")
 
 // Vue.component("loading", Loading)
 

@@ -2,16 +2,25 @@
     <div class="initialize">
       <div class="content">
         <h1>Access Token</h1>
-        <div class="input-wrapper">
-          <input type="text" class="transparent" v-model="token" placeholder="Access Token">
-          <input type="text" class="transparent" v-model="host" placeholder="Host">
+        <form class="ui inverted form">
+          <div class="field">
+            <label>Access Token</label>
+            <input type="text" v-model="token" placeholder="Access Token">
+          </div>
+          <div class="field">
+            <label>API Endpoint</label>
+            <input type="text" v-model="host" placeholder="API Endpoint">
+          </div>
+          <div class="field">
+            <button class="ui fluid inverted basic button" @click="testToken" disabled="{{testing}}">
+              Test!
+            </button>
+          </div>
+        </form>
+
+        <div class="ui segment">
+          Test the connection with <br><code>curl -H "X-ZT1-Auth: {{token}}" {{host}}/version</code>
         </div>
-        <div class="button" @click="testToken" disabled="{{testing}}">
-          Test!
-        </div>
-        <small>
-          Test the connection with <code>curl -H "X-ZT1-Auth: {{token}}" {{host}}/version</code>
-        </small>
       </div>
     </div>
 </template>
@@ -33,7 +42,7 @@ export default {
           this.testing = true
           this.$api.test_token(this.token, this.host).then((ret)=>{
             console.log(ret)
-            this.$dispatch("msg", "success", "Correct Token, jump to dashboard")
+            this.$dispatch("msg", "success", "Auth Success")
             this.$api.set_config(this.token, this.host)
             this.$router.go("/dashboard")
           },(err)=>{
@@ -48,11 +57,12 @@ export default {
 
 <style scoped>
 h1{
-  color: white
+  color: white;
+  text-align: center;
 }
 .initialize{
   position: absolute;
-  background-color: #00badb;
+  background-color: #2196F3;
   height: 100%;
   width: 100%;
   display: flex;
@@ -60,27 +70,8 @@ h1{
 .content{
   width: 300px;
   margin: auto;
-  text-align: center;
 }
-input[type=text]{
-  color: #666;
-  outline: none;
-  width: 100%;
-  transition: all .4s;
-  margin-bottom: 1em;
-}
-input[disabled]{
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-input[type=text]:hover, input[type=text]:focus{
-  background-color: white;
-}
-.button{
-  background-color: white;
-  margin-top: 1em;
-  width: 100%;
-  padding: 1em;
-  cursor: pointer;
+.segment{
+  word-break: break-all;
 }
 </style>

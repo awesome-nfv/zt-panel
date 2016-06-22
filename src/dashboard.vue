@@ -4,20 +4,23 @@
     <div class="big_picture">
       <span v-bind:class="{block: true, online: info.online}">{{info.online?'online':'offline'}}</span>
     </div>
-    <p>
-      Remote Host: <span class="block mono">{{host}}</span>
-      Version: <span class="block mono">{{info.version}}</span>
-      Node: <span class="block mono">{{info.address}}</span>
-      TCP Fallback: <span class="block">{{info.tcpFallbackActive ? "On": "Off"}}</span>
+    <div class="ui list">
+      <div class="item">
+        <p>Remote Host:<p><span class="block mono">{{host}}</span>
+      </div>
+      <div class="item">
+        <p>Version:</p> <span class="block mono">{{info.version}}</span>
+      </div>
+      <div class="item">
+        <p>Node:</p> <span class="block mono">{{info.address}}</span>
+      </div>
+      <div class="item">
+        <p>TCP Fallback:</p> <span class="block">{{info.tcpFallbackActive ? "Active": "Inactive"}}</span>
+      </div>
+      <div class="item" v-if="controller">
+        <p>Controller InstanceID:</p> <span class="block mono">{{instanceid}}</span>
+      </div>
     </p>
-    <div v-if="controller">
-      <p>
-        Controller InstanceID <span class="block mono">{{instanceid}}</span>
-      </p>
-    </div>
-    <div class="text-center" v-else>
-      Not A Controller Node
-    </div>
   </div>
 </template>
 
@@ -50,15 +53,21 @@ export default  {
 </script>
 
 <style scoped>
-  .big_picture .block{
-    font-size: 3em;
-    background-color: #d50000;
-  }
-  .big_picture .block.online{
-    background-color: #16A085;
-  }
-  .big_picture{
-    text-align: center;
-    padding: 2em;
-  }
+.item{
+  text-align: center;
+}
+.item p{
+  margin-bottom: .2em;
+}
+.big_picture .block{
+  font-size: 3em;
+  background-color: #d50000;
+}
+.big_picture .block.online{
+  background-color: #16A085;
+}
+.big_picture{
+  text-align: center;
+  padding: 2em;
+}
 </style>
